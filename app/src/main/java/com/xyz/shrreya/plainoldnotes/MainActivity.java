@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,6 +22,13 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+
+    @OnClick({R.id.fab})
+    void fabClickHandler(){
+        Intent intent=new Intent(this, EditorActivity.class);
+        startActivity(intent);
+
+    }
 
     private List<NoteEntity> notesData= new ArrayList<>();
     private NotesAdapter mAdapter;
