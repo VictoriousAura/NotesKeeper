@@ -1,6 +1,6 @@
 package com.xyz.shrreya.plainoldnotes.utilities;
 
-import com.xyz.shrreya.plainoldnotes.model.NoteEntity;
+import com.xyz.shrreya.plainoldnotes.database.NoteEntity;
 
 import java.util.ArrayList;
 import java.util.Calendar;

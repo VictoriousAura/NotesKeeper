@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xyz.shrreya.plainoldnotes.R;
-import com.xyz.shrreya.plainoldnotes.model.NoteEntity;
+import com.xyz.shrreya.plainoldnotes.database.NoteEntity;
 
 import java.util.List;
 

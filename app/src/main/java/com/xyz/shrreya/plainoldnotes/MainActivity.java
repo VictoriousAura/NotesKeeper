@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.xyz.shrreya.plainoldnotes.model.NoteEntity;
+import com.xyz.shrreya.plainoldnotes.database.NoteEntity;
 import com.xyz.shrreya.plainoldnotes.ui.NotesAdapter;
 import com.xyz.shrreya.plainoldnotes.utilities.SampleData;
 
