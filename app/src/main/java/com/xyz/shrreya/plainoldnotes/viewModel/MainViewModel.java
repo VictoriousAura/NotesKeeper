@@ -2,8 +2,8 @@ package com.xyz.shrreya.plainoldnotes.viewModel;
 
 import android.app.Application;
 
+import com.xyz.shrreya.plainoldnotes.database.AppRepository;
 import com.xyz.shrreya.plainoldnotes.database.NoteEntity;
-import com.xyz.shrreya.plainoldnotes.utilities.SampleData;
 
 import java.util.List;
 
@@ -14,9 +14,17 @@ import androidx.lifecycle.AndroidViewModel;
  */
 public class MainViewModel extends AndroidViewModel {
 
-    public List<NoteEntity> mNotes = SampleData.getNotes();
+    public List<NoteEntity> mNotes;
+    public AppRepository mAppRepository;
 
     public MainViewModel(@NonNull Application application) {
+
         super(application);
+        mAppRepository= AppRepository.getInstance(application.getApplicationContext());
+        mNotes=mAppRepository.mNotes;
+    }
+
+    public void addSampleData() {
+        mAppRepository.addSampleData();
     }
 }
