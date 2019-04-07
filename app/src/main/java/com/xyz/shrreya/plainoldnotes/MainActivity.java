@@ -1,6 +1,8 @@
 package com.xyz.shrreya.plainoldnotes;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import com.xyz.shrreya.plainoldnotes.viewModel.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,26 +46,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        initViewModel();
         initRecyclerView();
-        notesData.addAll(viewModel.mNotes);
-        for (NoteEntity notes:
-             notesData) {
-            Log.i("PlainOldNotes",notes.toString());
-        }
-
+        initViewModel();
     }
 
     private void initViewModel() {
+
+        final Observer<List<NoteEntity>> noteObserver = new Observer<List<NoteEntity>>() {
+            @Override
+            public void onChanged(List<NoteEntity> noteEntities) {
+                notesData.clear();
+                notesData.addAll(noteEntities);
+
+                if(mAdapter == null){
+                    mAdapter = new NotesAdapter(notesData,MainActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
+                else
+                    mAdapter.notifyDataSetChanged();
+            }
+        };
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel.mNotes.observe(this,noteObserver);
     }
 
     private void initRecyclerView() {
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new NotesAdapter(notesData,this);
-        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     @Override

@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import androidx.lifecycle.LiveData;
+
 /**
  * Created by shrreya on 7/4/19.
  */
@@ -16,7 +18,7 @@ public class AppRepository {
     private AppDatabase mDb;
     private Executor executor= Executors.newSingleThreadExecutor();
 
-    public List<NoteEntity> mNotes;
+    public LiveData<List<NoteEntity>> mNotes;
 
     public static AppRepository getInstance(Context context)
     {
@@ -28,8 +30,8 @@ public class AppRepository {
     }
 
     private AppRepository(Context context) {
-        mNotes = SampleData.getNotes();
         mDb=AppDatabase.getInstance(context);
+        mNotes = getAllNotes();
     }
 
     public void addSampleData() {
@@ -39,5 +41,9 @@ public class AppRepository {
                 mDb.notesDao().insertAll(SampleData.getNotes());
             }
         });
+    }
+
+    private LiveData<List<NoteEntity>> getAllNotes(){
+        return mDb.notesDao().getAll();
     }
 }

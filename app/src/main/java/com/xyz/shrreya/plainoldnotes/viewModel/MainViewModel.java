@@ -9,12 +9,14 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
 /**
  * Created by shrreya on 6/4/19.
  */
 public class MainViewModel extends AndroidViewModel {
 
-    public List<NoteEntity> mNotes;
+    public LiveData<List<NoteEntity>> mNotes;
     public AppRepository mAppRepository;
 
     public MainViewModel(@NonNull Application application) {
