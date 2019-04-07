@@ -30,9 +30,9 @@ public class NoteEntity {
 
     /* when creating a new note and what the integers to be assigned automatically */
     @Ignore
-    public NoteEntity(int id, String text) {
-        this.id = id;
+    public NoteEntity(String text,Date date) {
         this.text = text;
+        this.date = date;
     }
 
     public int getId() {

@@ -26,9 +26,9 @@ public class SampleData {
 
     public static List<NoteEntity> getNotes(){
         List<NoteEntity> notes= new ArrayList<>();
-        notes.add(new NoteEntity(1,SAMPLE_TEXT_1,getDate(0)));
-        notes.add(new NoteEntity(2,SAMPLE_TEXT_2,getDate(-1)));
-        notes.add(new NoteEntity(3,SAMPLE_TEXT_3,getDate(-2)));
+        notes.add(new NoteEntity(SAMPLE_TEXT_1,getDate(0)));
+        notes.add(new NoteEntity(SAMPLE_TEXT_2,getDate(-1)));
+        notes.add(new NoteEntity(SAMPLE_TEXT_3,getDate(-2)));
         return notes;
     }
 }

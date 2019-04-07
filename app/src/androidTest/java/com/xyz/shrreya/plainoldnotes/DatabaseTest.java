@@ -43,7 +43,7 @@ public class DatabaseTest {
     }
 
     @Test
-    //should be void and have no argumemts
+    //should be void and have no arguments
     public void createAndRetrieveNotes(){
         mDao.insertAll(SampleData.getNotes());
         int count= mDao.getAllNotes();
@@ -57,6 +57,7 @@ public class DatabaseTest {
         NoteEntity original= SampleData.getNotes().get(0);
         NoteEntity fromDb = mDao.getNotesById(1);
         assertEquals(original.getText(), fromDb.getText());
+        assertEquals(1,fromDb.getId());
     }
 
 }
