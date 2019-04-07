@@ -29,4 +29,8 @@ public class MainViewModel extends AndroidViewModel {
     public void addSampleData() {
         mAppRepository.addSampleData();
     }
+
+    public void deleteAllNotes() {
+        mAppRepository.deleteAllNotes();
+    }
 }
